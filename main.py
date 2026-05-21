@@ -1,9 +1,16 @@
+import os
 from compressor import getPixels
 from utils import getCharByBrightness
 from rich import print
 
 
 def printImage(imagePath):
+    path = os.path.realpath(imagePath)
+    currPath = os.path.abspath("./")
+
+    if not path.startswith(currPath):
+        print("Not a valid path!")
+        return
     pixels, img = getPixels(imagePath)
     h, w = img.size
 
